@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+ <!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+
+// Load the Visualization API and the controls package.
+google.charts.load('current', {'packages':['geochart', 'corechart', 'controls', 'bar'], 
+// Note: you will need to get a mapsApiKey for your project.
+// See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+});
+
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(initialize);
+google.charts.setOnLoadCallback(drawgeochart1);
+google.charts.setOnLoadCallback(drawgeochart2);
+
+
+function initialize() {
+  
+var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/12XCvZjENQebwbTmSdREmR_JwR0cj8oBu1ViWbMNuUwQ/gviz/tq?tq=select%20A%2C%20D%2C%20G');
+
+
+// Send the query with a callback function.
+query.send(drawDashboard);
+}
+
+function drawDashboard(response) {
+var data = response.getDataTable();
+  
+ 
+// Define a category picker control for the Country column
+var categoryPicker = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'control',
+          'options': {
+            'filterColumnLabel': 'Country',
+            'ui': {
+              'allowTyping': false,
+              'allowMultiple': true,
+              'label' : 'Select the countries you want to compare'
+            }
+          }
+        });
+
+ 
+var columnChart = new google.visualization.ChartWrapper({
+          'chartType': 'ColumnChart',
+          'containerId': 'column_div',
+          'options': {
+            'height': 300,
+            'series': {
+            0: {format: 'decimal', targetAxisIndex: 0},
+            1: {format: 'percent', targetAxisIndex: 1}
+          },
+          'legend': { position: 'none' },
+          'bars': 'vertical',
+          'colors': ['#1b9e77', '#7570b3'],
+          'chart': {
+            'title': '',
+            'subtitle' : '',
+            },
+          'vAxes': {
+            // Adds titles to each axis.
+            0: {title: 'Masculinity'},
+            1: {title: 'Gender Wage Gap %'}
+            }
+          }
+        });
+
+
+
+// Create a dashboard.
+var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+
+// Establish dependencies, declaring that 'filter' drives the Charts,
+// so that the chart will only display entries that are let through
+// given the chosen control wrapper.
+dashboard.bind(categoryPicker, columnChart);
+
+// Draw the dashboard.
+dashboard.draw(data);
+
+};
+
+
+function drawgeochart1() {
+  
+var query1 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/12XCvZjENQebwbTmSdREmR_JwR0cj8oBu1ViWbMNuUwQ/gviz/tq?tq=Select%20A%2C%20D');
+
+
+// Send the query with a callback function.
+query1.send(drawDashboard1);
+}
+
+function drawDashboard1(response) {
+var data = response.getDataTable();
+   
+var options = {
+      'colors': ['#1b9e77'],
+        };
+                
+    
+// Instantiate and draw the geo chart1.
+var chart = new google.visualization.GeoChart(document.getElementById('geo_chart1'));
+chart.draw(data, options);
+};
+
+
+function drawgeochart2() {
+  
+var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/12XCvZjENQebwbTmSdREmR_JwR0cj8oBu1ViWbMNuUwQ/gviz/tq?tq=Select%20A%2C%20G');
+
+
+// Send the query with a callback function.
+query2.send(drawDashboard2);
+}
+
+function drawDashboard2(response) {
+var data = response.getDataTable();
+   
+var options = {
+            'title': 'here',
+        'colors': ['#7570b3']
+        };
+                
+    
+// Instantiate and draw the geo chart2.
+var chart = new google.visualization.GeoChart(document.getElementById('geo_chart2'));
+chart.draw(data, options);
+};
+
+
+</script>
+</head>
+<body>
+
+<!--Divs that will hold the Header-->
+<div class="bg-dark text-white text-center">
+ <br>
+  <div class="container">
+   <div class="row">
+    <div class="col">
+     <h1>Does the 'machoness' of a country determine gender pay gaps?</h1>
+    </div>
+   </div>
+  </div>
+ <br>
+</div>
+
+<!--Divs that will hold the Title and Text-->
+<br>
+ <div class="container">
+  <div class="row">
+   <div class="col">
+    <br>
+     <h3>Comparing cultural masculinity to gender pay differences</h3>
+      <br>
+       <p>Paragraph goes here</p>
+      <br>
+   </div>
+  </div>
+ </div>
+
+<!--Divs that will hold the dashboard, selector and column chart-->
+<br>
+ <div class="container">
+  <div class="row">
+   <div class="col">
+    <br>
+     <div id="dashboard_div">
+      <div id="control"> </div>
+       <br>
+       <div id="column_div"> </div>
+     </div>
+   </div>
+  </div>
+ </div>
+
+<br>
+<div class="container">
+  <div class="row">
+   <div class="col">
+    <br>
+     <p> some text in between</p>
+    </div>
+   </div>
+  </div>
+
+<!--Divs that will hold the two geo charts-->
+<br>
+ <div class="container">
+  <div class="row">
+   <div class="col text-center">
+    <h6>title for geo chart1</h6>
+    <br>
+    <div id="geo_chart1">
+    </div>
+   </div>
+  </div>
+  <br>
+  <div class="row"> 
+   <div class="col text-center">
+   <h6>title for geo chart2 </h6>
+    <br>
+    <div id="geo_chart2"></div>
+   </div>
+  </div>
+ </div>
+<br>
+
+</body>
+</html>
+
+
