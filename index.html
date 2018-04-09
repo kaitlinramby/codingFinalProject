@@ -57,7 +57,7 @@ var columnChart = new google.visualization.ChartWrapper({
           'chartType': 'ColumnChart',
           'containerId': 'column_div',
           'options': {
-            'height': 300,
+            'height': 450,
             'series': {
             0: {format: 'decimal', targetAxisIndex: 0},
             1: {format: 'percent', targetAxisIndex: 1}
@@ -106,8 +106,8 @@ function drawDashboard1(response) {
 var data = response.getDataTable();
    
 var options = {
-      'colors': ['#1b9e77'],
-        };
+			'colors': ['#1b9e77'],
+				};
                 
     
 // Instantiate and draw the geo chart1.
@@ -130,8 +130,8 @@ var data = response.getDataTable();
    
 var options = {
             'title': 'here',
-        'colors': ['#7570b3']
-        };
+     		'colors': ['#7570b3']
+				};
                 
     
 // Instantiate and draw the geo chart2.
