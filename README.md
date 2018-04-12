@@ -11,7 +11,7 @@
 
 * I decided to scrape the data from these pages using Python via a Jupyter notebook.
 
-* I launched a one-click server data analysis in Digital Ocean with python and a Jupyter Notebook installed.
+* I launched a one-click server data analysis in Digital Ocean with Python and a Jupyter Notebook installed.
 
 * After a lot of research and reading, I used a [Medium tutorial](https://medium.com/@ageitgey/quick-tip-the-easiest-way-to-grab-data-out-of-a-web-page-in-python-7153cecfca58) combined with the information from the lessons this term in Python, to scrape the tables on the above mentioned web pages and merge them together, which you can [see in full here](https://github.com/kaitlinramby/codingFinalProject/blob/master/Hofstede%2BCultural%2BDimensions%2BProject.ipynb).
 
@@ -29,9 +29,9 @@
 
 I wasn’t sure what I was going to get from comparing this data, but I was actually surprised to see that many of the countries with the highest levels of masculinity either have average or very low gender pay gaps, while there were many developed countries with low masculinity levels compared to higher gender pay gap percentages (like Finland).
 
-Instead of only doing some charts in python in the notebook, and analysis, I wanted to try my hand at further developing my coding skills, so I also created a website for the project. Below is how I developed the front end and visualised the data.
+Instead of only doing some charts in Python in the notebook, and analysis, I wanted to try my hand at further developing my coding skills, so I also created a website for the project. Below is how I developed the front end and visualised the data.
 
-I used the of the front end dev as an EDA (exploratory data analysis) step to see how the two metrics compared to one another, and if any patterns emerged.
+I used the front end dev as an EDA (exploratory data analysis) step to see how the two metrics compared to one another, and if any patterns emerged.
 
 *Analysing, visualising and sharing the results: FRONT END*
 
@@ -39,7 +39,7 @@ I used the of the front end dev as an EDA (exploratory data analysis) step to se
 
 * For the week 3 assessment, I used Google Charts visualization library. Even if this is used slightly less than D3.js, I found the learning curve to be "easy" because it integrates well with Google sheets where I kept my data and all the files in my Google Drive and Google Maps for the geocharts. So, I decided to use it also for this final project.
 
-* The hardest part of this whole project was getting the column chart to work with the select function (dropdown).
+* The hardest part of this whole project was getting the column chart to work with (binding it) the select function (dropdown).
 
 * It took many, many hours and going through a lot of [Google Charts tutorials](https://developers.google.com/chart/interactive/docs/) to properly bind the dropdown function to the Google charts. THEN I also had to try and get the double axis to display the two metrics evenly for the column chart which resulted in a lot of fails before I was able to finally get it after playing a lot with the options and reading forums in Stackoverflow.
 
